@@ -6,15 +6,16 @@ import App from './App.tsx';
 const init = () => {
   const rootElement = document.getElementById('root');
   if (rootElement) {
-    console.log('NexusTech: Initializing React Root...');
+    console.log('NexusTech: Initializing UI Layer...');
     const root = createRoot(rootElement);
     root.render(<App />);
-  } else {
-    console.error('NexusTech: Root element not found.');
+    // Force immediate dismissal of loading screen after render start
+    setTimeout(() => {
+      document.body.classList.add('loaded');
+    }, 100);
   }
 };
 
-// Ensure DOM is fully loaded before mounting
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', init);
 } else {

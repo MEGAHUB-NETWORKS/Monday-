@@ -2,40 +2,34 @@
 import React from 'react';
 
 const Hero: React.FC = () => {
+  const smartlink = "https://www.effectivegatecpm.com/wjb8j1tsjg?key=c80a29ddbeda79ae126747b7f7d3cf12";
+
   return (
-    <section className="relative overflow-hidden py-20 lg:py-32">
-      <div className="absolute top-0 left-1/2 -z-10 h-[600px] w-full -translate-x-1/2 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-500/10 via-slate-950 to-transparent blur-3xl opacity-50"></div>
+    <section className="relative overflow-hidden py-16 lg:py-24 border-b border-white/5">
+      <div className="absolute top-0 left-1/2 -z-10 h-[500px] w-full -translate-x-1/2 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-500/10 via-slate-950 to-transparent blur-3xl opacity-50"></div>
       
-      <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-        <div className="inline-flex items-center rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-indigo-400 mb-8 animate-pulse">
-          Breaking: AI Frontier Report
+      <div className="mx-auto max-w-5xl px-4 text-center">
+        <div className="inline-flex items-center rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-indigo-400 mb-8 animate-pulse">
+          Confidential: 2025 Market Intelligence
         </div>
-        <h1 className="mx-auto max-w-4xl text-5xl font-black tracking-tight text-white sm:text-7xl lg:text-8xl">
-          Decoding the <span className="bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">Future</span> of Intelligence.
+        <h1 className="text-4xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl">
+          THE <span className="text-indigo-500">INTELLIGENCE</span> PROTOCOL.
         </h1>
-        <p className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-slate-400 sm:text-xl">
-          The ultimate resource for engineers, founders, and futurists navigating the next wave of technological evolution. Join 150k+ readers staying ahead of the curve.
+        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-400">
+          NexusTech provides high-signal data for technical leaders. Avoid the noise, master the infrastructure.
         </p>
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <div className="flex w-full max-w-md gap-x-4">
-            <input
-              type="email"
-              required
-              placeholder="Enter your email"
-              className="min-w-0 flex-auto rounded-full border border-white/10 bg-white/5 px-6 py-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-            />
-            <button className="flex-none rounded-full bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all">
-              Get Notified
-            </button>
-          </div>
-        </div>
-        
-        <div className="mt-16 flex items-center justify-center gap-x-10 text-slate-500 text-sm font-medium grayscale opacity-60">
-          <span>TRUSTED BY LEADERS AT:</span>
-          <span className="hover:grayscale-0 hover:opacity-100 transition-all cursor-default">OPENAI</span>
-          <span className="hover:grayscale-0 hover:opacity-100 transition-all cursor-default">ANTHROPIC</span>
-          <span className="hover:grayscale-0 hover:opacity-100 transition-all cursor-default">STRIPE</span>
-          <span className="hover:grayscale-0 hover:opacity-100 transition-all cursor-default">NVIDIA</span>
+          <a 
+            href={smartlink} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto rounded-full bg-indigo-600 px-8 py-3.5 text-sm font-bold text-white shadow-[0_0_20px_rgba(79,70,229,0.3)] hover:bg-indigo-500 hover:scale-105 transition-all text-center"
+          >
+            DOWNLOAD TECH REPORT
+          </a>
+          <button className="w-full sm:w-auto rounded-full border border-white/10 bg-white/5 px-8 py-3.5 text-sm font-bold text-white hover:bg-white/10 transition-all">
+            Join the Network
+          </button>
         </div>
       </div>
     </section>
