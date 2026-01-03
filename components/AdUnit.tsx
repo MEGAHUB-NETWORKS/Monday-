@@ -1,9 +1,8 @@
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
 interface AdUnitProps {
   id: string;
-  format?: 'iframe' | 'native';
   width?: number;
   height?: number;
   type?: '300x250' | '468x60' | '160x600' | '320x50' | '160x300' | 'native';
@@ -11,68 +10,56 @@ interface AdUnitProps {
   isNative?: boolean;
 }
 
-const AdUnit: React.FC<AdUnitProps> = ({ id, width, height, adKey, type, isNative }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const initialized = useRef(false);
+const AdUnit: React.FC<AdUnitProps> = ({ width, height, adKey, isNative }) => {
+  if (!adKey) return null;
 
-  useEffect(() => {
-    if (!containerRef.current || !adKey || initialized.current) return;
-
-    const currentContainer = containerRef.current;
-
-    if (isNative) {
-      const script = document.createElement('script');
-      script.async = true;
-      script.setAttribute('data-cfasync', 'false');
-      script.src = `https://pl28394031.effectivegatecpm.com/${adKey}/invoke.js`;
-      currentContainer.appendChild(script);
-    } else {
-      const script = document.createElement('script');
-      script.src = 'https://www.highperformanceformat.com/invoke.js';
-      
-      const config = document.createElement('script');
-      config.innerHTML = `
-        atOptions = {
-          'key' : '${adKey}',
-          'format' : 'iframe',
-          'height' : ${height || 50},
-          'width' : ${width || 320},
-          'params' : {}
-        };
-      `;
-      
-      currentContainer.appendChild(config);
-      currentContainer.appendChild(script);
-    }
-
-    initialized.current = true;
-    
-    return () => {
-      // Cleanup to prevent duplicate script injection on re-render
-      if (currentContainer) {
-        currentContainer.innerHTML = '';
-        initialized.current = false;
-      }
-    };
-  }, [adKey, height, width, isNative]);
-
-  const wrapperClass = type === '160x600' || type === '160x300' 
-    ? "flex justify-center transition-opacity duration-500" 
-    : "flex justify-center my-4 w-full overflow-hidden transition-opacity duration-500";
+  // Industry-standard isolation for high-density ad scripts
+  const srcDoc = isNative 
+    ? `
+      <html>
+        <head><style>body{margin:0;padding:0;overflow:hidden;background:transparent;display:flex;justify-content:center;}</style></head>
+        <body>
+          <div id="container-${adKey}"></div>
+          <script async="async" data-cfasync="false" src="https://pl28394031.effectivegatecpm.com/${adKey}/invoke.js"></script>
+        </body>
+      </html>
+    `
+    : `
+      <html>
+        <head><style>body{margin:0;padding:0;overflow:hidden;background:transparent;display:flex;justify-content:center;}</style></head>
+        <body>
+          <script type="text/javascript">
+            atOptions = {
+              'key' : '${adKey}',
+              'format' : 'iframe',
+              'height' : ${height || 50},
+              'width' : ${width || 320},
+              'params' : {}
+            };
+          </script>
+          <script type="text/javascript" src="https://www.highperformanceformat.com/${adKey}/invoke.js"></script>
+        </body>
+      </html>
+    `;
 
   return (
-    <div className={wrapperClass}>
-      <div 
-        id={isNative ? `container-${adKey}` : undefined} 
-        ref={containerRef} 
-        className="ad-min-h"
-        style={{ 
-          width: width ? `${width}px` : '100%', 
-          minHeight: height ? `${height}px` : 'auto',
-          maxWidth: '100%' 
-        }}
-      >
-      </div>
+    <div 
+      className="flex justify-center overflow-hidden ad-container"
+      style={{ 
+        width: width ? `${width}px` : '100%', 
+        height: height ? `${height}px` : (isNative ? '250px' : 'auto'),
+        margin: '10px 0'
+      }}
+    >
+      <iframe
+        title="ad-frame"
+        srcDoc={srcDoc}
+        width={width || '100%'}
+        height={height || '100%'}
+        frameBorder="0"
+        scrolling="no"
+        style={{ border: 'none', overflow: 'hidden' }}
+      />
     </div>
   );
 };

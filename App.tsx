@@ -28,10 +28,10 @@ const App: React.FC = () => {
       href={smartlink} 
       target="_blank" 
       rel="noopener noreferrer"
-      className={`group relative flex items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-600 to-indigo-800 px-12 py-6 text-2xl font-black uppercase tracking-tighter text-white shadow-[0_0_50px_rgba(79,70,229,0.6)] transition-all hover:scale-110 hover:brightness-125 active:scale-95 ${className}`}
+      className={`group relative flex items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-600 to-fuchsia-600 px-12 py-6 text-3xl font-black uppercase tracking-tighter text-white shadow-[0_0_60px_rgba(192,38,211,0.6)] transition-all hover:scale-110 hover:brightness-125 active:scale-95 ${className}`}
     >
-      <span className="relative z-10">WATCH PREMIUM ADS</span>
-      <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
+      <span className="relative z-10 drop-shadow-lg">WATCH PREMIUM ADS</span>
+      <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/50 to-transparent group-hover:animate-[shimmer_1s_infinite]"></div>
     </a>
   );
 
@@ -39,175 +39,166 @@ const App: React.FC = () => {
     <div className="flex min-h-screen flex-col bg-slate-950">
       <Navbar />
       
-      {/* ATOMIC HEADER STACK - 6 BANNERS */}
-      <div className="flex flex-col items-center space-y-4 bg-white/[0.03] py-10 border-b-2 border-indigo-500/50">
-        <div className="text-[12px] text-cyan-400 font-black tracking-[1em] uppercase animate-pulse mb-4 text-center px-4">Network Infrastructure Maintained by Sponsors</div>
-        <div className="flex flex-wrap justify-center gap-4 px-4">
-          <AdUnit id="h-1" adKey={keys.mobile} width={320} height={50} type="320x50" />
-          <AdUnit id="h-2" adKey={keys.leaderboard} width={468} height={60} type="468x60" />
-          <AdUnit id="h-3" adKey={keys.mobile} width={320} height={50} type="320x50" />
+      {/* EXTREME AD HEADER - 8 UNITS */}
+      <div className="flex flex-col items-center space-y-4 bg-indigo-950/20 py-12 border-b-4 border-fuchsia-500/30">
+        <WatchAdsButton className="mb-6 w-full max-w-4xl" />
+        <div className="flex flex-wrap justify-center gap-4">
+          <AdUnit id="h-top-1" adKey={keys.mobile} width={320} height={50} />
+          <AdUnit id="h-top-2" adKey={keys.leaderboard} width={468} height={60} />
+          <AdUnit id="h-top-3" adKey={keys.mobile} width={320} height={50} />
         </div>
-        <div className="flex flex-wrap justify-center gap-6 mt-4">
-          <AdUnit id="h-4" adKey={keys.rectangle} width={300} height={250} type="300x250" />
-          <WatchAdsButton className="max-w-xs h-24 text-lg" />
-          <AdUnit id="h-5" adKey={keys.rectangle} width={300} height={250} type="300x250" />
+        <div className="flex flex-wrap justify-center gap-8 py-4">
+          <AdUnit id="h-mid-1" adKey={keys.rectangle} width={300} height={250} />
+          <AdUnit id="h-mid-2" adKey={keys.rectangle} width={300} height={250} />
         </div>
+        <AdUnit id="h-bot-1" adKey={keys.leaderboard} width={468} height={60} />
       </div>
 
       <div className="flex justify-center w-full relative">
-        {/* LEFT AD GUTTER - STACKED SKYSCRAPERS */}
+        {/* LEFT AD GUTTER - 2000px+ OF CONTINUOUS ADS */}
         <aside className="ad-gutter mr-4">
-          <div className="flex flex-col gap-8 py-10">
-            <WatchAdsButton className="text-xs py-3 px-4 rounded-lg" />
-            <AdUnit id="L-1" adKey={keys.tall} width={160} height={600} type="160x600" />
-            <AdUnit id="L-2" adKey={keys.shortTall} width={160} height={300} type="160x300" />
-            <AdUnit id="L-3" adKey={keys.tall} width={160} height={600} type="160x600" />
-            <AdUnit id="L-4" adKey={keys.shortTall} width={160} height={300} type="160x300" />
-            <WatchAdsButton className="text-xs py-3 px-4 rounded-lg" />
+          <div className="flex flex-col gap-8 py-10 sticky top-20">
+            <AdUnit id="L-S-1" adKey={keys.tall} width={160} height={600} />
+            <AdUnit id="L-S-2" adKey={keys.shortTall} width={160} height={300} />
+            <a href={smartlink} className="block bg-fuchsia-600 p-2 text-[10px] text-center font-black animate-pulse">WATCH AD</a>
+            <AdUnit id="L-S-3" adKey={keys.tall} width={160} height={600} />
           </div>
         </aside>
 
         <main className="flex-grow max-w-7xl px-4 sm:px-6 lg:px-8">
           <Hero />
           
-          <div className="flex flex-col items-center my-12 gap-8">
-             <WatchAdsButton className="w-full max-w-3xl" />
-             <div className="flex gap-4">
-               <AdUnit id="pre-grid-1" adKey={keys.leaderboard} width={468} height={60} type="468x60" />
-               <AdUnit id="pre-grid-2" adKey={keys.leaderboard} width={468} height={60} type="468x60" />
+          <div className="flex flex-col items-center my-16 gap-10">
+             <WatchAdsButton className="w-full h-32" />
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+               <AdUnit id="pre-grid-1" adKey={keys.leaderboard} width={468} height={60} />
+               <AdUnit id="pre-grid-2" adKey={keys.leaderboard} width={468} height={60} />
              </div>
           </div>
 
-          {/* MAIN GRID - AD AFTER EVERY CARD */}
-          <section className="py-12 relative">
-            <h2 className="text-5xl font-black text-white mb-16 tracking-tighter uppercase italic border-l-[16px] border-indigo-600 pl-8">Critical Intelligence</h2>
+          {/* GRID OF CONTENT WITH MAX AD INJECTION */}
+          <section className="py-12">
+            <h2 className="text-6xl font-black text-white mb-20 tracking-tighter uppercase italic border-l-[24px] border-fuchsia-600 pl-10 shadow-fuchsia-500/20">Market Intelligence</h2>
             
-            <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 xl:grid-cols-3">
+            <div className="grid grid-cols-1 gap-20 lg:grid-cols-2 xl:grid-cols-3">
               {MOCK_ARTICLES.map((article, index) => (
-                <div key={article.id} className="flex flex-col gap-10">
+                <div key={article.id} className="flex flex-col gap-12 group/post">
                   <ArticleCard article={article} />
                   
-                  {/* ADS AFTER EVERY SINGLE ARTICLE - MAX SATURATION */}
-                  <div className="bg-slate-900/90 p-8 rounded-[40px] border-4 border-indigo-500/20 shadow-[0_30px_60px_rgba(0,0,0,0.7)] flex flex-col items-center">
-                    <span className="text-[11px] text-indigo-400 font-black uppercase mb-6 tracking-widest text-center">Sponsored Technical Briefing</span>
-                    <AdUnit id={`art-slot-${index}`} adKey={keys.rectangle} width={300} height={250} type="300x250" />
-                    <div className="mt-6 w-full flex flex-col gap-3">
-                       <AdUnit id={`art-mob-a-${index}`} adKey={keys.mobile} width={320} height={50} type="320x50" />
-                       <AdUnit id={`art-mob-b-${index}`} adKey={keys.mobile} width={320} height={50} type="320x50" />
-                    </div>
-                    {index % 2 === 0 && (
-                      <div className="mt-6 w-full">
-                        <WatchAdsButton className="w-full text-sm py-4 rounded-xl" />
+                  {/* ADS AFTER EVERY ARTICLE - DIFFERENT TYPES */}
+                  <div className="bg-slate-900 p-6 rounded-[3rem] border-2 border-fuchsia-500/20 shadow-2xl flex flex-col items-center gap-6">
+                    <span className="text-xs text-fuchsia-400 font-black uppercase tracking-[0.5em] animate-bounce">Premium Sponsor</span>
+                    {index % 3 === 0 ? (
+                      <AdUnit id={`art-r-${index}`} adKey={keys.rectangle} width={300} height={250} />
+                    ) : index % 3 === 1 ? (
+                      <AdUnit id={`art-n-${index}`} adKey={keys.native} isNative={true} />
+                    ) : (
+                      <div className="flex flex-col gap-4">
+                         <AdUnit id={`art-m1-${index}`} adKey={keys.mobile} width={320} height={50} />
+                         <AdUnit id={`art-m2-${index}`} adKey={keys.mobile} width={320} height={50} />
                       </div>
                     )}
+                    <a href={smartlink} className="w-full bg-white/5 py-3 rounded-xl text-center text-[10px] font-bold hover:bg-white/10 transition-colors">VISIT SPONSOR HUB</a>
                   </div>
                 </div>
               ))}
             </div>
           </section>
 
-          {/* MASSIVE MID-SECTION AD BARRIER */}
-          <div className="my-24 bg-white/[0.02] py-20 px-8 rounded-[60px] border-y-2 border-white/5 flex flex-col items-center gap-12 overflow-hidden relative">
-             <div className="absolute top-0 right-0 p-4 opacity-20 rotate-45 text-8xl font-black text-white pointer-events-none">ADS</div>
-             <h3 className="text-2xl font-black text-indigo-400 uppercase tracking-[0.4em] text-center">Global Partner Network Synchronization</h3>
-             <div className="flex flex-wrap justify-center gap-10">
-                <AdUnit id="mid-palace-1" adKey={keys.rectangle} width={300} height={250} type="300x250" />
-                <AdUnit id="mid-palace-2" adKey={keys.rectangle} width={300} height={250} type="300x250" />
-                <AdUnit id="mid-palace-3" adKey={keys.rectangle} width={300} height={250} type="300x250" />
+          {/* NUCLEAR AD BLOCK - MID PAGE */}
+          <div className="my-32 bg-fuchsia-950/20 py-32 px-12 rounded-[100px] border-y-4 border-fuchsia-500 flex flex-col items-center gap-20 relative overflow-hidden">
+             <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none text-9xl font-black text-fuchsia-500 rotate-12 flex flex-wrap gap-20">ADS ADS ADS ADS</div>
+             <WatchAdsButton className="w-full max-w-6xl h-40" />
+             <div className="flex flex-wrap justify-center gap-12 z-10">
+                <AdUnit id="mid-nuke-1" adKey={keys.rectangle} width={300} height={250} />
+                <AdUnit id="mid-nuke-2" adKey={keys.rectangle} width={300} height={250} />
+                <AdUnit id="mid-nuke-3" adKey={keys.rectangle} width={300} height={250} />
              </div>
-             <WatchAdsButton className="w-full max-w-4xl" />
-             <div className="flex flex-wrap justify-center gap-4">
-                <AdUnit id="mid-palace-4" adKey={keys.leaderboard} width={468} height={60} type="468x60" />
-                <AdUnit id="mid-palace-5" adKey={keys.leaderboard} width={468} height={60} type="468x60" />
-             </div>
+             <AdUnit id="mid-nuke-long" adKey={keys.leaderboard} width={468} height={60} />
           </div>
 
-          {/* SATURATED SEO CONTENT - AD EVERY 100 WORDS */}
-          <section className="mx-auto max-w-4xl py-20 bg-slate-900/20 px-10 rounded-[50px]">
-            <div className="prose prose-invert prose-slate max-w-none">
-              <h2 className="text-5xl font-black text-white mb-16 text-center tracking-tighter uppercase underline decoration-indigo-600 decoration-8 underline-offset-8">Intelligence Manifest</h2>
-              <div className="text-slate-400 text-xl leading-[2] space-y-16">
+          {/* SEO CONTENT SATURATION - AD EVERY 50-100 WORDS */}
+          <section className="mx-auto max-w-5xl py-24 bg-slate-900/50 px-16 rounded-[80px]">
+            <div className="prose prose-invert prose-2xl max-w-none font-medium">
+              <h2 className="text-7xl font-black text-white mb-20 text-center tracking-tighter uppercase underline decoration-[20px] decoration-fuchsia-600 underline-offset-[-5px]">The Report</h2>
+              <div className="text-slate-300 space-y-20">
                 <p>{FILLER_TEXT.ai_trends.split('\n\n')[0]}</p>
-                <div className="flex flex-col items-center gap-6 py-10 bg-indigo-600/5 rounded-3xl border border-white/5">
-                  <AdUnit id="txt-1" adKey={keys.rectangle} width={300} height={250} type="300x250" />
-                  <WatchAdsButton className="scale-75" />
+                <div className="flex flex-col items-center gap-10 py-20 bg-fuchsia-600/10 rounded-[60px] border-2 border-fuchsia-500/30">
+                  <AdUnit id="txt-sat-1" adKey={keys.rectangle} width={300} height={250} />
+                  <WatchAdsButton className="scale-90" />
+                  <AdUnit id="txt-sat-2" adKey={keys.mobile} width={320} height={50} />
                 </div>
                 
                 <p>{FILLER_TEXT.ai_trends.split('\n\n')[1]}</p>
-                <AdUnit id="txt-2" adKey={keys.leaderboard} width={468} height={60} type="468x60" />
+                <AdUnit id="txt-sat-3" adKey={keys.leaderboard} width={468} height={60} />
                 
                 <p>{FILLER_TEXT.ai_trends.split('\n\n')[2]}</p>
-                <div className="flex justify-center gap-4">
-                   <AdUnit id="txt-3a" adKey={keys.mobile} width={320} height={50} type="320x50" />
-                   <AdUnit id="txt-3b" adKey={keys.mobile} width={320} height={50} type="320x50" />
+                <div className="flex flex-wrap justify-center gap-6">
+                   <AdUnit id="txt-sat-4a" adKey={keys.mobile} width={320} height={50} />
+                   <AdUnit id="txt-sat-4b" adKey={keys.mobile} width={320} height={50} />
                 </div>
 
                 <p>{FILLER_TEXT.blockchain.split('\n\n')[0]}</p>
-                <AdUnit id="txt-4" adKey={keys.native} isNative={true} />
+                <AdUnit id="txt-sat-5" adKey={keys.native} isNative={true} />
                 
-                <div className="py-20 flex flex-col items-center gap-10">
-                   <WatchAdsButton className="w-full" />
-                   <AdUnit id="txt-native-2" adKey={keys.native} isNative={true} />
+                <div className="py-24 flex flex-col items-center gap-12 bg-white/5 rounded-[40px]">
+                   <WatchAdsButton className="w-full h-48" />
+                   <AdUnit id="txt-sat-6" adKey={keys.rectangle} width={300} height={250} />
                 </div>
 
                 <p>{FILLER_TEXT.blockchain.split('\n\n')[1]}</p>
-                <AdUnit id="txt-5" adKey={keys.rectangle} width={300} height={250} type="300x250" />
-
-                <p>{FILLER_TEXT.future_outlook.split('\n\n')[0]}</p>
-                <div className="flex flex-col gap-4 items-center">
-                   <AdUnit id="txt-6" adKey={keys.leaderboard} width={468} height={60} type="468x60" />
-                   <AdUnit id="txt-7" adKey={keys.leaderboard} width={468} height={60} type="468x60" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <AdUnit id="txt-sat-7a" adKey={keys.leaderboard} width={468} height={60} />
+                  <AdUnit id="txt-sat-7b" adKey={keys.leaderboard} width={468} height={60} />
                 </div>
               </div>
             </div>
           </section>
         </main>
 
-        {/* RIGHT AD GUTTER - STACKED SKYSCRAPERS */}
+        {/* RIGHT AD GUTTER - MAXIMUM HEIGHT AD STACK */}
         <aside className="ad-gutter ml-4">
-          <div className="flex flex-col gap-8 py-10">
-            <AdUnit id="R-1" adKey={keys.shortTall} width={160} height={300} type="160x300" />
-            <AdUnit id="R-2" adKey={keys.tall} width={160} height={600} type="160x600" />
-            <WatchAdsButton className="text-[10px] py-4 px-2 rounded-lg" />
-            <AdUnit id="R-3" adKey={keys.shortTall} width={160} height={300} type="160x300" />
-            <AdUnit id="R-4" adKey={keys.tall} width={160} height={600} type="160x600" />
-            <AdUnit id="R-5" adKey={keys.shortTall} width={160} height={300} type="160x300" />
-            <WatchAdsButton className="text-[10px] py-4 px-2 rounded-lg" />
+          <div className="flex flex-col gap-8 py-10 sticky top-20">
+            <AdUnit id="R-S-1" adKey={keys.shortTall} width={160} height={300} />
+            <AdUnit id="R-S-2" adKey={keys.tall} width={160} height={600} />
+            <WatchAdsButton className="text-[12px] py-6 px-2 rounded-lg" />
+            <AdUnit id="R-S-3" adKey={keys.shortTall} width={160} height={300} />
+            <AdUnit id="R-S-4" adKey={keys.tall} width={160} height={600} />
           </div>
         </aside>
       </div>
 
-      {/* FOOTER AD PALACE - 3x3 GRID */}
-      <div className="bg-slate-900 py-32 border-t-8 border-indigo-600/50">
+      {/* THE AD GALAXY FOOTER - 12+ UNITS */}
+      <div className="bg-slate-900 py-40 border-t-[12px] border-fuchsia-600">
         <div className="mx-auto max-w-7xl px-4 flex flex-col items-center">
-          <h4 className="text-white font-black uppercase tracking-[0.8em] text-lg mb-20 text-center animate-pulse underline decoration-indigo-500 underline-offset-[20px]">Verified Revenue Partners</h4>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16">
-            <AdUnit id="f-grid-1" adKey={keys.rectangle} width={300} height={250} type="300x250" />
-            <AdUnit id="f-grid-2" adKey={keys.rectangle} width={300} height={250} type="300x250" />
-            <AdUnit id="f-grid-3" adKey={keys.rectangle} width={300} height={250} type="300x250" />
-            <WatchAdsButton className="text-sm py-10" />
-            <AdUnit id="f-grid-4" adKey={keys.rectangle} width={300} height={250} type="300x250" />
-            <WatchAdsButton className="text-sm py-10" />
-            <AdUnit id="f-grid-5" adKey={keys.rectangle} width={300} height={250} type="300x250" />
-            <AdUnit id="f-grid-6" adKey={keys.rectangle} width={300} height={250} type="300x250" />
-            <AdUnit id="f-grid-7" adKey={keys.rectangle} width={300} height={250} type="300x250" />
+          <WatchAdsButton className="mb-32 w-full" />
+          <h4 className="text-white font-black uppercase tracking-[1.2em] text-2xl mb-24 text-center animate-pulse drop-shadow-[0_0_15px_rgba(192,38,211,0.8)]">Partner Ecosystem</h4>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12">
+            {[...Array(8)].map((_, i) => (
+              <div key={i} className="flex flex-col gap-4">
+                <AdUnit id={`footer-grid-${i}`} adKey={keys.rectangle} width={300} height={250} />
+                <a href={smartlink} className="bg-fuchsia-600 py-2 text-[10px] text-center font-black">SPONSORED LINK {i+1}</a>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
       <Footer />
 
-      {/* STICKY REVENUE BAR - PERMANENT */}
-      <div className="fixed bottom-0 left-0 right-0 z-[100] bg-slate-950/98 backdrop-blur-[40px] border-t-4 border-indigo-600 p-4 flex flex-col items-center shadow-[0_-50px_200px_rgba(79,70,229,0.5)]">
-        <div className="flex items-center gap-12 mb-3">
-          <div className="h-3 w-3 rounded-full bg-red-500 animate-ping"></div>
-          <span className="text-xs text-indigo-400 font-black uppercase tracking-[0.5em]">System Yield Optimal</span>
-          <button className="text-[10px] text-slate-500 hover:text-white transition-all font-bold border border-white/10 px-2 py-1 rounded" onClick={(e) => e.currentTarget.parentElement?.parentElement?.remove()}>[CLOSE REVENUE OVERLAY]</button>
+      {/* UNBLOCKABLE STICKY FOOTER OVERLAY */}
+      <div className="fixed bottom-0 left-0 right-0 z-[1000] bg-black/95 backdrop-blur-3xl border-t-8 border-fuchsia-600 p-6 flex flex-col items-center shadow-[0_-100px_200px_rgba(192,38,211,0.6)]">
+        <div className="flex items-center gap-20 mb-4">
+          <div className="flex items-center gap-4">
+            <div className="h-6 w-6 rounded-full bg-red-600 animate-ping"></div>
+            <span className="text-sm text-fuchsia-500 font-black uppercase tracking-widest">Revenue Generation Locked</span>
+          </div>
+          <button className="text-xs text-slate-400 hover:text-white transition-all font-bold px-4 py-2 border border-white/20 rounded-full" onClick={(e) => e.currentTarget.parentElement?.parentElement?.remove()}>[CLOSE REVENUE LAYER]</button>
         </div>
-        <div className="flex flex-wrap justify-center items-center gap-8 w-full max-w-7xl">
-          <AdUnit id="sticky-1" adKey={keys.mobile} width={320} height={50} type="320x50" />
-          <WatchAdsButton className="h-12 text-xs px-8 py-0 rounded-xl" />
-          <AdUnit id="sticky-2" adKey={keys.mobile} width={320} height={50} type="320x50" />
+        <div className="flex flex-wrap justify-center items-center gap-12 w-full">
+          <AdUnit id="sticky-1" adKey={keys.mobile} width={320} height={50} />
+          <WatchAdsButton className="h-20 text-lg px-20 py-0 rounded-3xl" />
+          <AdUnit id="sticky-2" adKey={keys.mobile} width={320} height={50} />
         </div>
       </div>
     </div>
