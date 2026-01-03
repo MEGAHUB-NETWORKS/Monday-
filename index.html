@@ -33,7 +33,8 @@
 </script>
     
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #020617; }
+        body { font-family: 'Inter', sans-serif; background-color: #020617; margin: 0; }
+        #root { min-height: 100vh; }
         .loading-state {
             display: flex;
             justify-content: center;
@@ -42,9 +43,9 @@
             color: #6366f1;
             font-weight: 800;
             letter-spacing: -0.05em;
+            background-color: #020617;
         }
     </style>
-    <!-- POPADS SCRIPT HERE -->
 </head>
 <body class="bg-slate-950 text-slate-200 antialiased selection:bg-indigo-500 selection:text-white">
     <div id="root">
@@ -52,5 +53,7 @@
             <div class="animate-pulse">NEXUS<span class="text-cyan-400">TECH</span> INITIALIZING...</div>
         </div>
     </div>
+    <!-- Explicitly load the entry point to prevent "Initializing" hang on static hosts -->
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>
